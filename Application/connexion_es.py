@@ -11,13 +11,17 @@ else:
 
 index_name = "entities"
 
-query = {"query": {"match_all": {}}}
+# utiliser la méthode "search" pour récupérer tous les documents de l'index
+result = es.search(index=index_name, query={"match_all": {}})
 
-# Utilisez la méthode search pour exécuter la requête et récupérer toutes les données
-results = es.search(index=index_name, body=query, size=10000)
+# extraire les documents de la réponse
+docs = result["hits"]["hits"]
+print(result["hits"]["total"]["value"])
 
-# Parcourez les résultats et affichez les données
-for hit in results["hits"]["hits"]:
-    print(hit["_source"])
+# parcourir les documents et afficher leur ID et leur contenu
+for doc in docs:
+    print(doc['_id'])
+    print(doc['_source'])
+    print("")
 
 

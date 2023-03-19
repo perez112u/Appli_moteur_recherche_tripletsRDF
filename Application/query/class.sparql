@@ -11,6 +11,8 @@ WHERE{
     {?class a rdfs:Class}
     UNION
     {?x rdf:type ?class}
+    UNION
+    {?class a owl:Class}
     }
 }
 LIMIT 0

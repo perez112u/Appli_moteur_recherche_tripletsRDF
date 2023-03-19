@@ -474,7 +474,7 @@ def main():
     list_endpoint = ["https://data.open.ac.uk/query", "https://sparql.nextprot.org/", "http://rdf.disgenet.org/sparql/",
                      "https://genome.microbedb.jp/sparql", "https://id.nlm.nih.gov/mesh/sparql",
                      "https://sparql.proconsortium.org/virtuoso/sparql", "https://sparql.rhea-db.org/sparql",
-                     "http://patho.phenomebrowser.net/sparql/", "https://bio2rdf.org/sparql"]
+                     "http://patho.phenomebrowser.net/sparql/", "https://bio2rdf.org/sparql", "http://dbpedia.org/sparql"]
 
     list_query_graph = ["query/all_graphs_included.sparql", "query/graphs_with_a_triple_min.sparql",
                         "query/graphs_with_rdf_type.sparql"]
@@ -500,10 +500,10 @@ def main():
         os.makedirs(endpoint_dir,exist_ok=True)
 
         # repertoires des graphes de l'endpoint 1
-        if ep == list_endpoint[8]:
+        if ep == list_endpoint[-1]:
                 
                 compared_query = {}
-                nb, q, res = launch_query(setting_query(list_query_graph[1], ep, None, 5, True), None)
+                nb, q, res = launch_query(setting_query(list_query_graph[0], ep, None, 100, True), None)
                 if res != {}:
                     compared_query[nb] = q, res
                     # report - store the query and its results
@@ -521,16 +521,16 @@ def main():
                     class_dir = os.path.join(graph_dir,"classes")
                     os.makedirs(class_dir,exist_ok=True)
                     # lancement de la requete pour recuperer les classes
-                    nb, q, res = launch_query(setting_query(list_query_endpoint[0], ep, graph, 100, False), 1)
+                    nb, q, res = launch_query(setting_query(list_query_endpoint[0], ep, graph, 1000, False), 1)
 
                      # Lancement de la requete pour recuperer les labels de la classe
-                    nb2, q2, res2 = launch_query(setting_query(list_query_endpoint[2], ep, graph, 100, False), 1)
+                    nb2, q2, res2 = launch_query(setting_query(list_query_endpoint[2], ep, graph, 1000, False), 1)
 
                     # Lancement de la requete pour recuperer les labels de la propriete
-                    nb3, q3, res3 = launch_query(setting_query(list_query_endpoint[3], ep, graph, 100, False), 1)
+                    nb3, q3, res3 = launch_query(setting_query(list_query_endpoint[3], ep, graph, 1000, False), 1)
 
                      # Lancement de la requete pour recuperer les properties, domains et ranges
-                    nb4, q4, res4 = launch_query(setting_query(list_query_endpoint[4], ep, graph, 100, False), 1)
+                    nb4, q4, res4 = launch_query(setting_query(list_query_endpoint[4], ep, graph, 1000, False), 1)
 
                     print(len(res2['results']['bindings']))
                     if res != {} and nb != 0:
@@ -569,16 +569,16 @@ def main():
                                         range = r4["range"]["value"]
                                         data = {"property": property, "range": range}
                                         print (classe + " est domaine de : " + property)
-                                        with open(classe_dir + '/is_domain_of.json', 'a') as f:
-                                            json.dump(data, f)
+                                        with open (classe_dir + "/is_domain_of.json", "a") as f:
+                                            f.write(json.dumps(data) + "\n")
                                         f.close()
                                     # range
                                     if (r4["range"]["value"] == classe):
                                         domain = r4["domain"]["value"]
                                         data = {"domain": domain, "property": property}
                                         print (classe + " est range de : " + property)
-                                        with open (classe_dir + '/is_range_of.json', 'a') as f:
-                                            json.dump(data, f)
+                                        with open (classe_dir + "/is_range_of.json", "a") as f:
+                                            f.write(json.dumps(data) + "\n")
                                         f.close()
                                     
                                 
@@ -626,7 +626,7 @@ def main():
                                         domain = r4["domain"]["value"]
                                         rang = r4["range"] ["value"]
                                         data = {"domain": domain, "range": rang}
-                                        with open (propriete_dir + "/domain_range" + ".json", "a") as f:
+                                        with open (propriete_dir + "/is_property_of.json", "a") as f:
                                             f.write(json.dumps(data) + "\n")
                                         f.close()
                             

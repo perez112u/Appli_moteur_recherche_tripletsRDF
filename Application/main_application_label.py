@@ -148,9 +148,11 @@ def submit():
     res = search(text=text_value, entity_type=types, search_type=menu_value, lang=form_value)
     print ("Résultat :\n")
     for hit in res["hits"]["hits"]:
-        print(f"Nom : {hit['_source']['name']}")
         print(f"Type d'entité : {hit['_source']['entityType']}")
-        print(f"Labels : {hit['_source']['labels']}")
+        print(f"Nom : {hit['_source']['name']}")
+        print("URI : " + hit["_source"]['uri'])
+        print("Graph : " + hit["_source"]['graph'])
+        print ("Endpoint : " + hit["_source"]['endpoint'])
         print()
     print('------------------------')
 
