@@ -12,7 +12,12 @@ else:
 index_name = "entities"
 
 # utiliser la méthode "search" pour récupérer tous les documents de l'index
-result = es.search(index=index_name, query={"match_all": {}})
+result = es.search(index=index_name, query={
+		"term": {
+			"graph": "https://lod.proconsortium.org/hgnc:closeMatch"
+        }
+    })
+# result = es.get(index=index_name, id='https://sparql.proconsortium.org/virtuoso/sparql_https://lod.proconsortium.org/hgnc:closeMatch_http://purl.obolibrary.org/obo/PR_000012464')
 
 # extraire les documents de la réponse
 docs = result["hits"]["hits"]
