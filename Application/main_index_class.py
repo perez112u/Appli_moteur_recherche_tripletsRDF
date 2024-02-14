@@ -13,13 +13,13 @@ es = Elasticsearch(['http://localhost:9200'])
 # Définir le nom de l'index des classes
 INDEX_NAME = "graphes"
 
-# # Définir le mapping pour l'index graphes
-# mappings = {
-#     "properties": {
-#         "graph_id": {"type": "keyword"},
-#         "graph_uri": {"type": "text"},
-#     }
-# }
+# Définir le mapping pour l'index graphes
+mappings = {
+    "properties": {
+        "graph_id": {"type": "keyword"},
+        "graph_uri": {"type": "text"},
+    }
+}
 
 # # Créer l'index avec le mapping
 # if not es.indices.exists(INDEX_NAME):
@@ -34,7 +34,7 @@ INDEX_NAME = "classes"
 mappings = {
     "properties": {
         "class_name": {"type": "keyword"},
-        "graphs_uri": {"type": "keyword"}
+        "graphs_id": {"type": "keyword"}
     }
 }
 

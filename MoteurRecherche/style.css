@@ -1,0 +1,123 @@
+/* Style pour le formulaire */
+#formulaire {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+#valeur {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  width: 300px;
+  margin-right: 10px;
+
+}
+
+#search1 {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+}
+
+#search1:hover {
+  background-color: #0069d9;
+}
+
+/* Style pour les résultats */
+#res_title {
+  margin-top: 50px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#res {
+  margin-top: 20px;
+}
+
+#res h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#res h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+#res table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+
+}
+
+#res th {
+  font-weight: bold;
+  text-align: left;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #ddd;
+}
+
+#res td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+
+#res td a {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+#res td a img {
+  vertical-align: middle;
+}
+
+#res button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+#res button:hover {
+  background-color: #0069d9;
+}
+
+#res ol {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#res ol li {
+  margin-bottom: 5px;
+}
+
+#res ol li span {
+  font-weight: bold;
+
+}
+
+#res ol li a {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
